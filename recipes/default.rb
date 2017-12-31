@@ -6,6 +6,7 @@
 
 execute 'gpg-key' do
   command 'rpm --import https://dl.google.com/linux/linux_signing_key.pub'
+  not_if 'rpm -qi gpg-pubkey-7fac5991-*'
 end
 
 yum_repository 'google-chrome' do

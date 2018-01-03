@@ -22,9 +22,17 @@ describe 'cb_chrome::default' do
           runner.converge(described_recipe)
         end
 
-        it 'creates installs gpg key' do
-          # soething stub
+        before(:each) do
+          stub_command('rpm -qi gpg-pubkey-7fac5991-*').and_return(false)
         end
+
+        context 'when key is not installed' do
+          it 'executes a script' do
+            stub_command('rpm -qi gpg-pubkey-7fac5991-*').and_return(false)
+            expect(chef_run).to run_execute('rpm --import https://dl.google.com/linux/linux_signing_key.pub')
+          end
+        end
+
         it 'creates alex repo with proper info' do
           expect(chef_run).to create_yum_repository('google-chrome').with(baseurl: 'http://dl.google.com/linux/chrome/rpm/stable/x86_64')
           expect(chef_run).to create_yum_repository('google-chrome').with(gpgcheck: true)

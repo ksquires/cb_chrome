@@ -16,4 +16,6 @@ yum_repository 'google-chrome' do
   description 'repo for google chrome'
 end
 
-package 'google-chrome-stable'
+package 'google-chrome-stable' do
+  action :upgrade
+end

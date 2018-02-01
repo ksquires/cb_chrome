@@ -4,8 +4,10 @@ maintainer_email 'you@example.com'
 license 'All Rights Reserved'
 description 'Installs/Configures cb_chrome'
 long_description 'Installs/Configures cb_chrome'
-version '0.1.2'
+version '0.2.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
+
+depends 'chrome'
 
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when

@@ -28,7 +28,7 @@ describe 'cb_chrome::default' do
 
         context 'when key is not installed' do
           it 'executes a script' do
-            stub_command('rpm -qi gpg-pubkey-7fac5991-*').and_return(false)
+            #   stub_command('rpm -qi gpg-pubkey-7fac5991-*').and_return(false)
             expect(chef_run).to run_execute('rpm --import https://dl.google.com/linux/linux_signing_key.pub')
           end
         end
@@ -39,8 +39,8 @@ describe 'cb_chrome::default' do
           expect(chef_run).to create_yum_repository('google-chrome').with(enabled: true)
         end
 
-        it 'installs chrome package' do
-          expect(chef_run).to install_package('google-chrome-stable')
+        it 'upgrades chrome package' do
+          expect(chef_run).to upgrade_package('google-chrome-stable')
         end
 
         it 'converges successfully' do

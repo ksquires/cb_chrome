@@ -6,6 +6,6 @@
 
 include_recipe 'chrome::default'
 
-#package 'google-chrome-stable' do
-#  action :upgrade
-#end
+package 'google-chrome-stable' do
+  action :upgrade
+end
